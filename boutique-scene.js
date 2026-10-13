@@ -65,9 +65,8 @@ function startBoutiqueScene(mount, renderer) {
         new THREE.MeshStandardMaterial({ map: globeTexture, roughness: 0.54, metalness: 0.18 })
     );
     orbitSystem.add(globe);
-
-
-
++
++
     const brandRing = new THREE.Mesh(
         new THREE.TorusGeometry(0.92, 0.014, 10, 100),
         new THREE.MeshStandardMaterial({ color: 0xe4bf91, roughness: 0.26, metalness: 0.76 })
