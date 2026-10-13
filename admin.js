@@ -59,12 +59,16 @@ function renderProducts() {
         const stock = Math.max(0, Number(product.stock) || 0);
         const status = stock > 0 ? `${stock} pièce${stock !== 1 ? "s" : ""} en stock` : "En arrivage";
         const statusClass = stock === 0 ? "unavailable" : "";
+        const source = product.source || "Local";
+        const paymentLabel = source === "Local" ? "Paiement à la livraison" : "Avance avant commande";
         card.innerHTML = `
             <img src="${escapeHTML(product.image)}" alt="" loading="lazy">
             <div class="admin-product-info">
                 <p class="category">${escapeHTML(product.category)}</p>
                 <h3>${escapeHTML(product.name)}</h3>
                 <p class="admin-product-price">${Number(product.price).toFixed(2).replace(".", ",")} DT</p>
+                <p class="admin-product-source">Source · ${escapeHTML(source)}</p>
+                <p class="admin-product-payment${source === "Local" ? "" : " advance"}">${escapeHTML(paymentLabel)}</p>
                 <p class="admin-product-status ${statusClass}">${escapeHTML(status)}</p>
                 <div class="admin-product-actions">
                     <button type="button" data-edit-product="${escapeHTML(product.id)}">Modifier</button>
@@ -93,6 +97,7 @@ function showProductForm(product = null) {
         document.getElementById("productName").value = product.name;
         document.getElementById("productPrice").value = product.price;
         document.getElementById("productCategory").value = product.category;
+        document.getElementById("productSource").value = product.source || "Local";
         document.getElementById("productStock").value = Math.max(0, Number(product.stock) || 0);
         document.getElementById("productDescription").value = product.description;
         if (product.image.startsWith("http://") || product.image.startsWith("https://")) {
@@ -227,6 +232,7 @@ productForm.addEventListener("submit", async event => {
         name: document.getElementById("productName").value.trim(),
         price: Number(document.getElementById("productPrice").value),
         category: document.getElementById("productCategory").value,
+        source: document.getElementById("productSource").value,
         stock: Math.floor(Number(document.getElementById("productStock").value)),
         image,
         description: document.getElementById("productDescription").value.trim()
