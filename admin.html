@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Gestion boutique · ZM BEAUTY FRANCE</title>
+    <link rel="icon" href="logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-page">
+    <header class="admin-topbar">
+        <a href="INDEX.HTML" class="admin-brand"><img src="logo.svg" alt="" width="42" height="42"><span>ZM BEAUTY <small>FRANCE · EL FAHS</small></span></a>
+        <a href="INDEX.HTML" class="admin-back">Retour à la boutique ↗</a>
+    </header>
+
+    <main class="admin-shell">
+        <section class="admin-intro">
+            <p class="eyebrow">ESPACE BOUTIQUE · GESTION</p>
+            <h1>Votre sélection,<br><span>à votre image.</span></h1>
+            <p>Ajoutez les trouvailles du moment et gérez votre catalogue.</p>
+        </section>
+
+        <section class="admin-login" id="adminLogin" aria-labelledby="login-title">
+            <p class="eyebrow">ACCÈS RÉSERVÉ</p>
+            <h2 id="login-title">Connexion gestionnaire</h2>
+            <form id="loginForm">
+                <label for="adminPassword">Mot de passe</label>
+                <input id="adminPassword" type="password" autocomplete="current-password" required>
+                <button class="shop-button" type="submit">Accéder à la gestion ↗</button>
+                <p id="loginFeedback" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+
+        <section class="admin-dashboard" id="adminDashboard" hidden>
+            <div class="admin-inventory-heading">
+                <div>
+                    <p class="eyebrow">INVENTAIRE</p>
+                    <h2>Vos produits</h2>
+                    <p id="inventoryCount" class="inventory-count"></p>
+                </div>
+                <button id="newProductButton" class="shop-button" type="button">+ Ajouter un produit</button>
+            </div>
+
+            <form id="productForm" class="product-form" hidden>
+                <div class="product-form-heading">
+                    <div>
+                        <p class="eyebrow">NOUVELLE TROUVAILLE</p>
+                        <h2 id="productFormTitle">Ajouter un produit</h2>
+                    </div>
+                    <button id="closeProductForm" class="icon-close" type="button" aria-label="Fermer le formulaire">×</button>
+                </div>
+
+                <div class="product-form-grid">
+                    <label for="productName">Nom du produit
+                        <input id="productName" type="text" maxlength="100" placeholder="Ex. Sac bandoulière" required>
+                    </label>
+                    <label for="productPrice">Prix de vente · DT
+                        <input id="productPrice" type="number" min="0" step="0.01" placeholder="0,00" required>
+                    </label>
+                    <label for="productCategory">Catégorie
+                        <select id="productCategory" required>
+                            <option value="">Choisir une catégorie</option>
+                            <option>Vêtements</option>
+                            <option>Accessoires</option>
+                            <option>Beauté & soins</option>
+                            <option>Maison</option>
+                            <option>Autre</option>
+                        </select>
+                    </label>
+                    <label for="productStock">Quantité disponible · pièces
+                        <input id="productStock" type="number" min="0" step="1" value="1" required>
+                    </label>
+                    <label for="productImageFile" class="product-image-field">Photo depuis votre appareil
+                        <input id="productImageFile" type="file" accept="image/jpeg,image/png,image/webp">
+                    </label>
+                    <label for="productImageUrl" class="product-image-field">Ou lien de la photo
+                        <input id="productImageUrl" type="url" placeholder="https://…">
+                    </label>
+                    <div class="product-preview-wrap">
+                        <img id="productImagePreview" class="product-image-preview" alt="Aperçu du produit" hidden>
+                        <p id="productImageHint">Choisissez une photo nette du produit.</p>
+                    </div>
+                    <label for="productDescription" class="product-description-field">Description
+                        <textarea id="productDescription" rows="3" maxlength="500" placeholder="Détails utiles : matière, taille, couleur…" required></textarea>
+                    </label>
+                </div>
+
+                <div class="product-form-actions">
+                    <button class="shop-button" type="submit" id="saveProductButton">Publier le produit</button>
+                    <button class="admin-secondary-button" type="button" id="cancelProductButton">Annuler</button>
+                </div>
+                <p id="productFeedback" role="status" aria-live="polite"></p>
+            </form>
+
+            <div id="adminProducts" class="admin-products"></div>
+            <p id="adminNotice" class="admin-notice" role="status" aria-live="polite"></p>
+        </section>
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+</html>

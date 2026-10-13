@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title">
+  <title id="title">Monogramme ZM BEAUTY FRANCE</title>
+  <rect x="2" y="2" width="116" height="116" rx="58" fill="#35252b"/>
+  <circle cx="60" cy="60" r="49" fill="none" stroke="#d5acbb" stroke-width="1"/>
+  <path d="M25 39h29L26 76h29M63 76V39l16 23 16-23v37" fill="none" stroke="#fbf8f5" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M46 90h28M60 20v8M56 24h8" fill="none" stroke="#d5acbb" stroke-width="1.5"/>
+</svg>

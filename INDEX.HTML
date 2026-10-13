@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZM BEAUTY FRANCE</title>
+    <meta name="description" content="ZM BEAUTY FRANCE à El Fahs : une sélection de trouvailles mode et accessoires, commandes sur WhatsApp et paiement à la livraison.">
+    <link rel="icon" href="logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a class="skip-link" href="#produits">Aller à la boutique</a>
+    <div class="announcement">El Fahs · الفحص <span>·</span> Paiement à la livraison — Tkhalles ki touslek</div>
+
+    <section class="hero" id="accueil">
+        <div>
+            <p class="eyebrow">ZM BEAUTY FRANCE · EL FAHS</p>
+            <h1 class="welcome-title"><span class="welcome-greeting">Welcome</span><span class="welcome-brand">ZM BEAUTY<br>FRANCE</span></h1>
+            <p class="description">
+                Mode, accessoires et trouvailles soigneusement choisies pour vous.
+                <span class="darja-line">Ahbet chwaya, farrej, ekhtar elli y3ajbek w ab3ath commande mte3ek.</span>
+            </p>
+            <a href="#produits" class="shop-button">Ahbet w ekhtar <span aria-hidden="true">↓</span></a>
+            <p class="hero-note">Commande sur WhatsApp · Tkhalles ki touslek.</p>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-film" id="heroFilm" role="img" aria-label="Montage animé d’inspiration ZM BEAUTY FRANCE"></div>
+            <div class="image-caption"><span id="hero-image-caption">Inspiration mode.</span><a href="#produits">Voir la sélection ↗</a></div>
+            <span class="visual-label" id="hero-film-label" aria-hidden="true">INSPIRATION</span>
+        </div>
+        <a class="scroll-cue" href="#site-menu"><span>Ahbet chwaya · Découvrir la boutique</span><span aria-hidden="true">↓</span></a>
+    </section>
+
+    <header class="header scroll-reveal" id="site-menu">
+        <a href="#accueil" class="logo" aria-label="ZM BEAUTY FRANCE — accueil"><img src="logo.svg" alt="" width="54" height="54"><span class="brand-name">ZM BEAUTY <span class="brand-country">FRANCE</span></span></a>
+        <p class="subtitle">MODE & ACCESSOIRES · EL FAHS</p>
+
+        <nav aria-label="Navigation principale">
+            <a href="#accueil">Accueil</a>
+            <a href="#produits">Boutique</a>
+            <a href="#sur-demande">Sur demande</a>
+            <a href="#contact">Contact</a>
+            <button id="cart-button" type="button">Panier <span id="cart-count">0</span></button>
+        </nav>
+    </header>
+
+    <div class="service-strip scroll-reveal" aria-label="Informations de commande">
+        <p><span>01</span> Commande sur WhatsApp · Taleb b’sahla</p>
+        <p><span>02</span> Livraison : 8 DT par commande</p>
+        <p><span>03</span> Tkhalles ki touslek</p>
+    </div>
+
+    <main id="produits">
+        <div class="section-heading scroll-reveal">
+            <div><p class="eyebrow">LA SÉLECTION DU MOMENT</p><h2>Des trouvailles à adopter.</h2></div>
+            <p>De nouvelles pièces, choisies avec soin.<br>Ekhtar elli y3ajbek !</p>
+        </div>
+
+        <div class="catalog-toolbar scroll-reveal"><div class="search-box">
+            <label for="search" class="sr-only">Rechercher un produit</label>
+            <input id="search" type="search"
+                   placeholder="Rechercher · Chnoua tlawej ?">
+        </div><div class="sort-box"><label for="sort">Trier par</label><select id="sort"><option value="selection">Notre sélection</option><option value="price-asc">Prix croissant</option><option value="price-desc">Prix décroissant</option><option value="name">Nom du produit</option></select></div></div>
+
+        <div class="filters scroll-reveal">
+            <button class="filter active" data-category="Tous" aria-pressed="true">Tout</button>
+        </div>
+        <p id="product-count" class="product-count scroll-reveal" aria-live="polite"></p>
+
+        <div id="product-list" class="products scroll-reveal"></div>
+        <noscript><p>Activez JavaScript pour afficher les produits et préparer votre commande. Vous pouvez aussi nous contacter sur WhatsApp au +216 50 689 730.</p></noscript>
+
+        <section class="custom-request scroll-reveal" id="sur-demande" aria-labelledby="request-title">
+            <div class="request-intro">
+                <p class="eyebrow">VOTRE TROUVAILLE, NOTRE MISSION</p>
+                <h2 id="request-title">Ma l9itech<br><span>elli t7eb ?</span></h2>
+                <p>Tu ne trouves pas l’article qu’il te faut ? Envoie-nous la photo et on le cherche pour toi.</p>
+                <p class="darja-line">Hot taswirtou w ab3athhelna. Nlawjoulek 3lih, n9oloulek el prix w ken najmou njibouh !</p>
+                <p class="request-note">Prix, disponibilité et délai à confirmer avant toute commande. La demande ne vous engage à aucun achat.</p>
+                <a href="https://wa.me/21650689730?text=Aslema%20ZM%20BEAUTY%20FRANCE%2C%20nheb%20n7ajbek%20%C3%A9l%C3%A0%20mta3%20article%20moujoud%20m%C3%A9ch%20l9it%20fi%20site.%20H%C3%A9na%20el%20taswira%20w%20les%20d%C3%A9tails%20mta3ha." target="_blank" rel="noopener noreferrer">Demander sur WhatsApp ↗</a>
+                <p class="request-note">Envoi direct sur WhatsApp, photo et détails à préciser pour trouver le bon produit.</p>
+            </div>
+            <form id="request-form" name="demande-produit" method="POST" action="/merci" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="demande-produit">
+                <p hidden><label>Ne pas remplir <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+                <label for="request-name">Votre nom · Esmek</label>
+                <input id="request-name" name="customer-name" autocomplete="name" maxlength="100" required>
+                <label for="request-phone">Téléphone / WhatsApp · Noumrouk</label>
+                <input id="request-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" required>
+                <label for="request-photo" class="photo-label">Photo du produit · Taswirtou</label>
+                <input id="request-photo" name="product-photo" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="photo-help photo-status" required>
+                <p id="photo-help" class="request-note">JPG, PNG ou WebP · 7 Mo maximum. Une photo du produit seulement, sans documents personnels.</p>
+                <img id="photo-preview" class="photo-preview" alt="Aperçu de la photo du produit choisi" hidden>
+                <p id="photo-status" class="request-note" role="status"></p>
+                <label for="request-details">Les détails · Taille, couleur, quantité…</label>
+                <textarea id="request-details" name="details" rows="3" maxlength="1000" placeholder="9olna chnoua t7eb exactement…"></textarea>
+                <p class="request-note">Votre nom, numéro et photo sont transmis à la boutique pour répondre à votre demande.</p>
+                <button id="request-submit" type="submit" class="shop-button">Envoyer ma demande · Ab3ath ↗</button>
+                <p id="request-status" role="status" aria-live="polite"></p>
+                <noscript><p class="request-note">Sans JavaScript, choisissez une image de moins de 7 Mo. Vous arrivez sur la page de confirmation après l’envoi.</p></noscript>
+            </form>
+        </section>
+
+        <div class="checkout-layout scroll-reveal" hidden>
+        <section class="cart-section" id="panier">
+            <p class="eyebrow">VOTRE SÉLECTION</p>
+            <h2>Le panier.</h2>
+            <div id="cart-items"></div>
+            <div class="totals"><p>Sous-total <span id="cart-subtotal">0,00 DT</span></p><p>Livraison <span id="cart-shipping">0,00 DT</span></p><h3>Total à payer <span id="cart-total">0,00 DT</span></h3></div>
+            <button id="checkout-button" class="shop-button">
+                Préparer ma commande · Ncommandi ↗
+            </button>
+            <p class="delivery-note">Paiement à la livraison · Commande confirmée avec la boutique sur WhatsApp.</p>
+        </section>
+
+        <section class="order-section" id="commande" hidden>
+            <h2>Finaliser votre commande</h2>
+            <form id="order-form">
+                <label>Nom complet
+                    <input name="name" autocomplete="name" maxlength="100" required>
+                </label>
+
+                <label>Téléphone
+                    <input name="phone" type="tel" autocomplete="tel" maxlength="30" required>
+                </label>
+
+                <label>Adresse de livraison
+                    <textarea name="address" autocomplete="street-address" maxlength="500" rows="3" required></textarea>
+                </label>
+
+                <label>Ville et code postal
+                    <input name="city" autocomplete="address-level2" maxlength="100" required>
+                </label>
+
+                <button type="submit" class="shop-button">
+                    Continuer sur WhatsApp ↗
+                </button>
+            </form>
+            <p class="delivery-note">Vos coordonnées servent à préparer le message. Envoyez-le dans WhatsApp pour transmettre votre demande et confirmer la disponibilité.</p>
+            <p id="order-message" role="status"></p>
+        </section>
+        </div>
+        <section class="faq scroll-reveal" aria-labelledby="faq-title"><div><p class="eyebrow">ON VOUS ACCOMPAGNE</p><h2 id="faq-title">Tout simplement.</h2></div><div class="faq-list"><details><summary>Comment commander · Kifech ncommandi ?</summary><p>Ajoutez vos articles au panier, renseignez vos coordonnées puis continuez sur WhatsApp. Ab3ath el message bech n2akdoulek el disponibilité w el commande.</p></details><details><summary>Ma l9itech el produit : chna3mel ?</summary><p>Dans « Sur demande », envoyez une photo et votre numéro. Nlawjoulek 3lih w nraj3oulek bel prix w el disponibilité. Aucun achat n’est confirmé sans votre accord.</p></details><details><summary>Livraison : 9addech ?</summary><p>La livraison coûte 8 DT par commande. Ce montant apparaît dans votre panier avant de continuer sur WhatsApp. Les modalités et délais sont à confirmer avec la boutique.</p></details><details><summary>Comment payer · Kifech nkhalles ?</summary><p>Tkhalles ki touslek el commande : paiement à la livraison. Tous les prix sont en dinars tunisiens (DT).</p></details></div></section>
+    </main>
+
+    <footer id="contact" class="scroll-reveal">
+        <div class="footer-brand"><img src="logo.svg" alt="" width="70" height="70"><h2>ZM BEAUTY <span>FRANCE</span></h2></div>
+        <p>Mode · Vêtements · Accessoires</p>
+        <address>Adresse : El Fahs, Tunisie · <span lang="ar-TN" dir="rtl">الفحص، تونس</span></address>
+        <p>Contact · Marhbe bik, a7ki m3ana !</p>
+        <div class="contact-links"><a href="tel:+21650689730">Appeler : +216 50 689 730</a><a href="https://wa.me/21650689730" target="_blank" rel="noopener noreferrer">WhatsApp · Ab3ath message ↗</a><a href="admin.html">Espace boutique ↗</a></div>
+        <small>© 2026 ZM BEAUTY FRANCE</small>
+    </footer>
+    <button id="floatingCartButton" class="floating-cart" type="button" aria-label="Afficher le panier" title="Afficher le panier">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 8h14l1 13H4L5 8Z"></path>
+            <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+        </svg>
+        <span class="floating-cart-label">Panier</span>
+        <span id="floatingCartCount" class="floating-cart-count" aria-live="polite">0</span>
+    </button>
+    <div id="cart-feedback" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="script.js"></script>
+    <script type="module" src="boutique-scene.js"></script>
+</body>
+</html>
