@@ -3,12 +3,12 @@ const productsFromStorage = () => JSON.parse(localStorage.getItem(productStorage
 let products = productsFromStorage();
 const heroFilm = document.getElementById("heroFilm");
 const fallbackHeroItems = [
-    { name: "Sac Élégance", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=700&auto=format&fit=crop&q=85" },
-    { name: "Lunettes Chic", image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=700&auto=format&fit=crop&q=85" },
-    { name: "Sac à main", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=700&auto=format&fit=crop&q=85" },
-    { name: "Montre Élégante", image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=700&auto=format&fit=crop&q=85" },
-    { name: "Style Féminin", image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700&auto=format&fit=crop&q=85" },
-    { name: "Collection Mode", image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=700&auto=format&fit=crop&q=85" }
+    { name: "Sac Élégance", source: "Shein", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=700&auto=format&fit=crop&q=85" },
+    { name: "Lunettes Chic", source: "Temu", image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=700&auto=format&fit=crop&q=85" },
+    { name: "Sac à main", source: "Shein", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=700&auto=format&fit=crop&q=85" },
+    { name: "Montre Élégante", source: "Temu", image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=700&auto=format&fit=crop&q=85" },
+    { name: "Style Féminin", source: "Shein", image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700&auto=format&fit=crop&q=85" },
+    { name: "Collection Mode", source: "Temu", image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=700&auto=format&fit=crop&q=85" }
 ];
 
 function refreshHeroFilm() {
@@ -35,6 +35,7 @@ function refreshHeroFilm() {
             image.crossOrigin = "anonymous";
             image.src = product.image;
             image.alt = product.name ? `Article : ${product.name}` : "Trouvaille ZM BEAUTY FRANCE";
+            image.dataset.source = product.source || "Local";
             image.loading = "eager";
             image.decoding = "async";
             track.appendChild(image);
@@ -178,6 +179,9 @@ function renderProducts() {
         const stock = Math.max(0, Number(product.stock) || 0);
         const status = stock > 0 ? `Disponible · ${stock} en stock` : "En arrivage";
         const unavailable = stock === 0;
+        const source = product.source || "Local";
+        const advanceRequired = source === "Shein" || source === "Temu";
+        const paymentLabel = advanceRequired ? "Avance avant commande" : "Paiement à la livraison";
 
         card.innerHTML = `
             <img class="product-image" src="${escapeHTML(product.image)}" alt="${escapeHTML(product.name)}" loading="lazy" decoding="async" width="600" height="700">
@@ -185,6 +189,8 @@ function renderProducts() {
                 <p class="category">${escapeHTML(product.category)}</p>
                 <h3>${escapeHTML(product.name)}</h3>
                 <p class="price">${formatPrice(Number(product.price))}</p>
+                <p class="product-source">Source · ${escapeHTML(source)}</p>
+                <p class="product-payment${advanceRequired ? " advance" : ""}">${escapeHTML(paymentLabel)}</p>
                 <p class="catalog-status${unavailable ? " unavailable" : ""}">${escapeHTML(status)}</p>
                 <button data-add="${escapeHTML(product.id)}" aria-label="Ajouter ${escapeHTML(product.name)} au panier" ${unavailable ? "disabled" : ""}>
                     ${unavailable ? "En arrivage" : "Ajouter au panier"} <span aria-hidden="true">+</span>
@@ -238,6 +244,13 @@ function renderCart() {
     document.getElementById("cart-total").textContent = formatPrice(total + shipping);
     document.getElementById("checkout-button").disabled = cart.length === 0;
     document.getElementById("order-message").textContent = "";
+
+    const advanceItems = cart.filter(item => item.source === "Shein" || item.source === "Temu");
+    const localItems = cart.filter(item => item.source !== "Shein" && item.source !== "Temu");
+    const paymentNotes = [];
+    if (advanceItems.length) paymentNotes.push("Shein/Temu · avance avant commande.");
+    if (localItems.length) paymentNotes.push("Stock local · paiement à la livraison.");
+    document.getElementById("cart-payment-note").textContent = paymentNotes.join(" ") || "Paiement à la livraison · Commande confirmée avec la boutique sur WhatsApp.";
 }
 
 productList.addEventListener("click", event => {
@@ -416,8 +429,18 @@ orderForm.addEventListener("submit", function(event) {
     const total = getSubtotal();
     message += "\nSous-total : " + formatPrice(total);
     message += "\nLivraison : " + formatPrice(deliveryFee);
-    message += "\nTotal à payer : " + formatPrice(total + deliveryFee);
-    message += "\nPaiement à la livraison\nMerci de confirmer la disponibilité et les modalités de livraison.";
+    message += "\nTotal de la commande : " + formatPrice(total + deliveryFee);
+
+    const advanceItems = cart.filter(item => item.source === "Shein" || item.source === "Temu");
+    const localItems = cart.filter(item => item.source !== "Shein" && item.source !== "Temu");
+    if (advanceItems.length) {
+        message += "\n\n*Shein/Temu · avance avant commande :* " + advanceItems.map(item => `${item.name} x ${item.quantity}`).join(", ");
+        message += "\nL'avance est à verser avant la commande. Son montant est confirmé avec la boutique sur WhatsApp.";
+    }
+    if (localItems.length) {
+        message += "\n\n*Stock local · paiement à la livraison :* " + localItems.map(item => `${item.name} x ${item.quantity}`).join(", ");
+    }
+    message += "\nMerci de confirmer la disponibilité et les modalités de livraison.";
 
     const whatsappNumber = "21650689730";
 
