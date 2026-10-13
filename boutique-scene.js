@@ -1,4 +1,3 @@
-+
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js";
 
 const mount = document.getElementById("heroFilm");
@@ -11,7 +10,7 @@ if (mount) {
             antialias: true,
             alpha: false,
             powerPreference: "high-performance"
-
++
         });
     } catch (error) {
         console.warn("The animated product scene is unavailable in this browser.", error);
@@ -65,6 +64,7 @@ function startBoutiqueScene(mount, renderer) {
         new THREE.MeshStandardMaterial({ map: globeTexture, roughness: 0.54, metalness: 0.18 })
     );
     orbitSystem.add(globe);
+
 +
 +
     const brandRing = new THREE.Mesh(
